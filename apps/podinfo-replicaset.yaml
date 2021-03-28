@@ -5,7 +5,7 @@ metadata:
   namespace: app-podinfo
   labels:
     app: podinfo
-    test: "1"
+    test: "2"
   annotations:
     strategy.spinnaker.io/max-version-history: '2'
     traffic.spinnaker.io/load-balancers: '["service podinfo-service"]'
