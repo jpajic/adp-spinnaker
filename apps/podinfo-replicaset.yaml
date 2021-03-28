@@ -6,6 +6,7 @@ metadata:
     traffic.spinnaker.io/load-balancers: '["service podinfo-service"]'
   labels:
     app: podinfo
+    test: "1"
   name: podinfo
 spec:
   replicas: 3
