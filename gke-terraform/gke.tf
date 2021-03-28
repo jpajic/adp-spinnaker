@@ -70,7 +70,7 @@ resource "google_container_node_pool" "adp-spinnaker-node-pool-default" {
       env = google_project.project.project_id
     }
 
-    machine_type = "n1-standard-2"
+    machine_type = "n1-standard-1"
     tags         = [google_container_cluster.adp-spinnaker.name]
     metadata = {
       disable-legacy-endpoints = "true"

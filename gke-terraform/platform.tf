@@ -1,9 +1,11 @@
+# Remote terraform state in Google Cloud Storage bucket
 terraform {
   backend "gcs" {
     bucket  = "adp-tf-state"
   }
 }
 
+# Download google provider for terraform )
 provider "google" {
   version = "~> 3.61"
 }
