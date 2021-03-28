@@ -31,5 +31,10 @@ override.tf.json
 # Secrets
 /.secrets
 
+# Local configs
+/tools/spin-config
+
 # Temporary Dev files
+/.spin
+/.tmp
 /notes.md
