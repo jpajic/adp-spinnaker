@@ -5,7 +5,7 @@ metadata:
   namespace: app-podinfo
   labels:
     app: podinfo
-    test: "2"
+    test: "3"
 spec:
   ports:
   - name: http-default
