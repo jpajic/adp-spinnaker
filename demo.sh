@@ -2,7 +2,7 @@
 set -e
 
 # Demo environment config
-export ADP_CONFIG_GCP_PROJECT="adp-demo-1-20210329"
+export ADP_CONFIG_GCP_PROJECT="adp-demo-x-20210329"
 export ADP_CONFIG_GCP_REGION="europe-west3"
 export ADP_CONFIG_GCP_GCS_LOCATION="EU"
 export ADP_CONFIG_GCP_GKE_CLUSTER="adp-spinnaker"
