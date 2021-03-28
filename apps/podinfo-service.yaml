@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: podinfo-service
   labels:
-    app: podinfo
+    app: test
 spec:
   ports:
   - name: http-default
