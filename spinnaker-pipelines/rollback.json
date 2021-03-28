@@ -1,0 +1,77 @@
+{
+  "expectedArtifacts": [],
+  "name": "rollback",
+  "application": "podinfo",
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "anonymous",
+  "limitConcurrent": true,
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "second_newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Scale Up previous version (Manifest)",
+      "refId": "9",
+      "replicas": "3",
+      "requisiteStageRefIds": [],
+      "type": "scaleManifest"
+    },
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "second_newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Enable (Manifest)",
+      "refId": "10",
+      "requisiteStageRefIds": [
+        "9"
+      ],
+      "type": "enableManifest"
+    },
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Scale down current version (Manifest)",
+      "refId": "11",
+      "replicas": "0",
+      "requisiteStageRefIds": [
+        "10"
+      ],
+      "type": "scaleManifest"
+    },
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Disable current version (Manifest)",
+      "refId": "12",
+      "requisiteStageRefIds": [
+        "11"
+      ],
+      "type": "disableManifest"
+    }
+  ],
+  "triggers": [],
+  "updateTs": "1616936120664"
+}

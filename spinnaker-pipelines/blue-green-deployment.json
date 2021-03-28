@@ -1,0 +1,107 @@
+{
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "artifactAccount": "github",
+        "id": "f4d6116f-a1a1-4090-98d6-e8aad541734b",
+        "name": "apps/podinfo-replicaset.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-replicaset.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "displayName": "podinfo replicaset",
+      "id": "5202633c-19ff-4958-89d7-067501c4b482",
+      "matchArtifact": {
+        "artifactAccount": "github",
+        "customKind": true,
+        "id": "730e130e-e671-4f34-9244-62bd0b038511",
+        "name": "apps/podinfo-replicaset.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    }
+  ],
+  "name": "blue-green-deployment",
+  "application": "podinfo",  
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "anonymous",
+  "limitConcurrent": true,
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactId": "5202633c-19ff-4958-89d7-067501c4b482",
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy  new version (Manifest)",
+      "namespaceOverride": "",
+      "refId": "6",
+      "requisiteStageRefIds": [],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": true,
+        "options": {
+          "enableTraffic": true,
+          "namespace": "app-podinfo",
+          "services": [
+            "service podinfo-service"
+          ],
+          "strategy": "redblack"
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "second_newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Scale Down previous version (Manifest)",
+      "refId": "7",
+      "replicas": "0",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "type": "scaleManifest"
+    },
+    {
+      "account": "default",
+      "app": "podinfo",
+      "cloudProvider": "kubernetes",
+      "cluster": "replicaSet podinfo",
+      "criteria": "second_newest",
+      "kind": "replicaSet",
+      "location": "app-podinfo",
+      "mode": "dynamic",
+      "name": "Disable previous version (Manifest)",
+      "refId": "8",
+      "requisiteStageRefIds": [
+        "7"
+      ],
+      "type": "disableManifest"
+    }
+  ],
+  "triggers": [
+    {
+      "branch": "",
+      "enabled": true,
+      "expectedArtifactIds": [
+        "5202633c-19ff-4958-89d7-067501c4b482"
+      ],
+      "project": "jpajic",
+      "secret": "spinnaker",
+      "slug": "adp-spinnaker",
+      "source": "github",
+      "type": "git"
+    }
+  ],
+  "updateTs": "1616935908709"
+}

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: podinfo
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: adp-spinnaker-gke-lb-podinfo
+    kubernetes.io/ingress.global-static-ip-name: adp-spinnaker-lb-podinfo
     networking.gke.io/managed-certificates: podinfo-cert
     kubernetes.io/ingress.class: "gce"
 spec:

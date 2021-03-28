@@ -1,0 +1,261 @@
+{
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "artifactAccount": "github",
+        "id": "f4d6116f-a1a1-4090-98d6-e8aad541734b",
+        "name": "apps/podinfo-replicaset.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-replicaset.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "displayName": "podinfo replicaset",
+      "id": "5202633c-19ff-4958-89d7-067501c4b482",
+      "matchArtifact": {
+        "artifactAccount": "github",
+        "customKind": true,
+        "id": "730e130e-e671-4f34-9244-62bd0b038511",
+        "name": "apps/podinfo-replicaset.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    },
+    {
+      "defaultArtifact": {
+        "artifactAccount": "github",
+        "id": "c50c5195-934c-49d2-9970-2d75504105e8",
+        "name": "apps/podinfo-service.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-service.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "displayName": "podinfo-service",
+      "id": "35040d69-3f8b-485a-969f-ae1b2bfb9d58",
+      "matchArtifact": {
+        "artifactAccount": "github",
+        "customKind": true,
+        "id": "9bb4ca19-23d5-4d2d-a610-dff0d643df69",
+        "name": "apps/podinfo-service.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    },
+    {
+      "defaultArtifact": {
+        "artifactAccount": "github",
+        "id": "49426f8c-087e-418b-98f9-e402e5fad604",
+        "name": "apps/podinfo-ingress.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-ingress.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "displayName": "podinfo-ingress",
+      "id": "68c9eab4-944f-4f06-a01f-9050660b1cb2",
+      "matchArtifact": {
+        "artifactAccount": "github",
+        "customKind": true,
+        "id": "ff0a8a73-eea4-44b1-b8c3-6b257a030dc6",
+        "name": "apps/podinfo-ingress.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    },
+    {
+      "defaultArtifact": {
+        "artifactAccount": "github",
+        "id": "fd1e74c7-11a1-49c6-8188-865941377ecb",
+        "name": "apps/podinfo-cert.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-cert.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "displayName": "podinfo-cert",
+      "id": "ad56cea7-9755-4aab-9f38-12adf4a75eeb",
+      "matchArtifact": {
+        "artifactAccount": "github",
+        "customKind": true,
+        "id": "2fc82f7d-197b-4c2b-9fd2-263b21b5c2db",
+        "name": "apps/podinfo-cert.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    }
+  ],
+  "name": "initial-deployment",
+  "application": "podinfo",
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "anonymous",
+  "limitConcurrent": true,
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactId": "35040d69-3f8b-485a-969f-ae1b2bfb9d58",
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy Service (Manifest)",
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactId": "68c9eab4-944f-4f06-a01f-9050660b1cb2",
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy Ingress (Manifest)",
+      "refId": "4",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactId": "ad56cea7-9755-4aab-9f38-12adf4a75eeb",
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy SSL Cert (Manifest)",
+      "refId": "5",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifact": {
+        "artifactAccount": "github",
+        "id": "bc866813-ceb8-4279-87d4-ab789c70b2d6",
+        "name": "apps/podinfo-namespace.yaml",
+        "reference": "https://api.github.com/repos/jpajic/adp-spinnaker/contents/apps/podinfo-namespace.yaml",
+        "type": "github/file",
+        "version": "main"
+      },
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy  Namespace (Manifest)",
+      "refId": "6",
+      "requisiteStageRefIds": [],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "default",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactId": "5202633c-19ff-4958-89d7-067501c4b482",
+      "moniker": {
+        "app": "podinfo"
+      },
+      "name": "Deploy ReplicaSet (Manifest)",
+      "refId": "7",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    }
+  ],
+  "triggers": [
+    {
+      "branch": "",
+      "enabled": false,
+      "expectedArtifactIds": [
+        "5202633c-19ff-4958-89d7-067501c4b482"
+      ],
+      "project": "jpajic",
+      "secret": "spinnaker",
+      "slug": "adp-spinnaker",
+      "source": "github",
+      "type": "git"
+    },
+    {
+      "enabled": true,
+      "expectedArtifactIds": [
+        "35040d69-3f8b-485a-969f-ae1b2bfb9d58"
+      ],
+      "project": "jpajic",
+      "slug": "adp-spinnaker",
+      "source": "github",
+      "type": "git"
+    },
+    {
+      "enabled": true,
+      "expectedArtifactIds": [
+        "68c9eab4-944f-4f06-a01f-9050660b1cb2"
+      ],
+      "project": "jpajic",
+      "slug": "adp-spinnaker",
+      "source": "github",
+      "type": "git"
+    },
+    {
+      "enabled": true,
+      "expectedArtifactIds": [
+        "ad56cea7-9755-4aab-9f38-12adf4a75eeb"
+      ],
+      "project": "jpajic",
+      "slug": "adp-spinnaker",
+      "source": "github",
+      "type": "git"
+    }
+  ],
+  "updateTs": "1616937731872"
+}
