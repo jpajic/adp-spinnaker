@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: podinfo-service
+  namespace: app-podinfo
   labels:
     app: podinfo
 spec:

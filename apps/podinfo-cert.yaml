@@ -2,6 +2,7 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: podinfo-cert
+  namespace: app-podinfo
   labels:
     app: podinfo
 spec:

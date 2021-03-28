@@ -2,12 +2,13 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: podinfo-ingress
+  namespace: app-podinfo
+  labels:
+    app: podinfo
   annotations:
     kubernetes.io/ingress.global-static-ip-name: adp-spinnaker-gke-lb-podinfo
     networking.gke.io/managed-certificates: podinfo-cert
     kubernetes.io/ingress.class: "gce"
-  labels:
-    app: podinfo
 spec:
   backend:
     serviceName: podinfo-service

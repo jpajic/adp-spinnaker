@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
+  name: podinfo
+  namespace: app-podinfo
+  labels:
+    app: podinfo
   annotations:
     strategy.spinnaker.io/max-version-history: '2'
     traffic.spinnaker.io/load-balancers: '["service podinfo-service"]'
-  labels:
-    app: podinfo
-  name: podinfo
 spec:
   replicas: 3
   selector:
