@@ -5,7 +5,7 @@ terraform {
   }
 }
 
-# Download google provider for terraform )
+# Download google provider for terraform
 provider "google" {
   version = "~> 3.61"
 }

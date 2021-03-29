@@ -10,7 +10,7 @@ helm="$(pwd)/tools/helm"
 # Default Configuration
 function _default_config {
     if [[ -z ${ADP_CONFIG_GCP_PROJECT} ]]; then
-        export ADP_CONFIG_GCP_PROJECT="adp-demo-1-20210327"
+        export ADP_CONFIG_GCP_PROJECT="adp-demo-1-20210329"
     fi
     if [[ -z ${ADP_CONFIG_GCP_REGION} ]]; then
         export ADP_CONFIG_GCP_REGION="europe-west3"
